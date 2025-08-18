@@ -8,7 +8,7 @@
 import GAMES_DATA from './games.js';
 
 // create a list of objects to store the data about the games using JSON.parse
-const GAMES_JSON = JSON.parse(GAMES_DATA)
+const GAMES_JSON = JSON.parse(GAMES_DATA);
 
 // remove all child elements from a parent element in the DOM
 function deleteChildElements(parent) {
@@ -29,7 +29,21 @@ const gamesContainer = document.getElementById("games-container");
 function addGamesToPage(games) {
 
     // loop over each item in the data
+        for (let i = 0; i < games.length ; i++){
+            console.log(i);
+            let newDiv = document.createElement("div");
+            newDiv.classList.add("game-card");
+            const gameInfo = games[i];
+            newDiv.innerHTML = `
+                <h3>${gameInfo.name}</h3>
+                <img src="${gameInfo.img}" alt="${gameInfo.name}" class="game-img">
+                <p>${gameInfo.description}</p>
+                `;
+            
 
+           
+            gamesContainer.appendChild(newDiv);
+        }
 
         // create a new div element, which will become the game card
 
@@ -47,6 +61,7 @@ function addGamesToPage(games) {
 
 }
 
+addGamesToPage(GAMES_JSON);  
 // call the function we just defined using the correct variable
 // later, we'll call this function using a different list of games
 
